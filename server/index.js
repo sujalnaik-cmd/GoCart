@@ -74,7 +74,10 @@ app.get("/api/auth/me", requireAuth, (request, response) => response.json({ user
 
 app.post("/api/orders", requireAuth, async (request, response) => {
   try {
-    const { items, address } = request.body;
+    const { items, address } = request.body || {};
+
+    console.log("Received order request:", { items, address });
+
     if (!address?.trim() || !Array.isArray(items) || items.length === 0) return response.status(400).json({ message: "Address and cart items are required" });
     const validItems = items.every((item) => item.name && Number.isFinite(Number(item.price)) && Number.isInteger(Number(item.quantity)) && Number(item.quantity) > 0);
     if (!validItems) return response.status(400).json({ message: "Cart items are invalid" });
@@ -89,8 +92,10 @@ app.post("/api/orders", requireAuth, async (request, response) => {
 });
 
 app.get("/api/orders", requireAuth, async (request, response) => {
+
   try {
     const orders = await Order.find({ user: request.user._id }).sort({ createdAt: -1 });
+  
     response.json({ orders });
   } catch (error) {
     console.error("Unable to load orders:", error.message);
