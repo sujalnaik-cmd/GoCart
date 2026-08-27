@@ -14,7 +14,7 @@ function Checkout() {
         <br />
         <br />
 
-        <Link to="/track">
+        <Link to="/trackOrder">
           <button>Place Order</button>
         </Link>
       </div>
