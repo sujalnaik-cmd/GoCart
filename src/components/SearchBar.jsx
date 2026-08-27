@@ -1,4 +1,22 @@
+import { useNavigate } from "react-router-dom";
+
 function SearchBar({ search, setSearch }) {
+
+const navigate = useNavigate();
+
+  const handleSearch = () => {
+    if (search.trim()) {
+      navigate(`/products?search=${encodeURIComponent(search)}`);
+    }
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleSearch();
+    }
+  };
+
+
   return (
     <div className="search-box">
       🔍
@@ -8,7 +26,9 @@ function SearchBar({ search, setSearch }) {
         value={search}
         onChange={(e) => setSearch(e.target.value)}
       />
-      <button>Search</button>
+      <button onClick={handleSearch}>
+        Search
+      </button>
     </div>
   );
 }

@@ -9,7 +9,7 @@ import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 import Product from "./pages/Product";
 import TrackOrder from "./pages/TrackOrder";
-// import Products from "./pages/Products";
+import Products from "./pages/Products";
 function App() {
   return (
     <div>
@@ -21,7 +21,7 @@ function App() {
       <Route path="/checkout" element={<Checkout />} />
       <Route path="/product/:id" element={<Product />} />
       <Route path="/trackOrder" element={<TrackOrder />} />
-      {/* <Route path="/products" element={<Products />} /> */}
+      <Route path="/products" element={<Products />} />
     </Routes>
 
      {/* <footer className="footer">

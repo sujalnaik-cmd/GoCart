@@ -1,5 +1,8 @@
+import { Link } from "react-router-dom";
+
 function ProductCard({ product }) {
   return (
+    <Link to={`/product/${product.id}`} style={{ textDecoration: "none", color: "inherit" }}>
     <div className="product-card">
       <div className="product-image">{product.image}</div>
 
@@ -10,6 +13,7 @@ function ProductCard({ product }) {
 
       <button>Add +</button>
     </div>
+    </Link>
   );
 }
 
