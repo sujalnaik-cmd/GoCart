@@ -1,7 +1,5 @@
-import { useState } from "react";
 import "./App.css";
-import { Link, Route, Routes } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 
 
 import Home from "./pages/Home";
@@ -10,6 +8,16 @@ import Checkout from "./pages/Checkout";
 import Product from "./pages/Product";
 import TrackOrder from "./pages/TrackOrder";
 import Products from "./pages/Products";
+import Login from "./pages/Login";
+import Orders from "./pages/Orders";
+import { useAuth } from "./context/AuthContext";
+
+function ProtectedRoute({ children }) {
+  const { user, loading } = useAuth();
+  if (loading) return <div className="section"><p>Loading...</p></div>;
+  return user ? children : <Navigate to="/login" replace />;
+}
+
 function App() {
   return (
     <div>
@@ -18,10 +26,12 @@ function App() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/cart" element={<Cart />} />
-      <Route path="/checkout" element={<Checkout />} />
+      <Route path="/checkout" element={<ProtectedRoute><Checkout /></ProtectedRoute>} />
       <Route path="/product/:id" element={<Product />} />
       <Route path="/trackOrder" element={<TrackOrder />} />
       <Route path="/products" element={<Products />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/orders" element={<ProtectedRoute><Orders /></ProtectedRoute>} />
     </Routes>
 
      {/* <footer className="footer">

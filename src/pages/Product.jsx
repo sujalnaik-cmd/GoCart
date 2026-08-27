@@ -1,5 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import { useCart } from "../context/CartContext";
 
 const products = [
   { id: 1, image: "🥛", name: "Fresh Milk", qty: "500 ml", price: 30 },
@@ -10,6 +11,7 @@ const products = [
 
 function Product() {
   const { id } = useParams();
+  const { addItem } = useCart();
   const product = products.find((p) => p.id === Number(id));
 
   return (
@@ -24,8 +26,8 @@ function Product() {
 
         <h2>₹{product.price}</h2>
 
-        <Link to="/cart">
-          <button>Add To Cart</button>
+        <Link to="/cart" onClick={() => addItem(product)}>
+          <button type="button">Add To Cart</button>
         </Link>
       </div>
     </>

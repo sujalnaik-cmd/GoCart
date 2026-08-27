@@ -25,6 +25,7 @@ const navigate = useNavigate();
         placeholder="Search products..."
         value={search}
         onChange={(e) => setSearch(e.target.value)}
+        onKeyDown={handleKeyDown}
       />
       <button onClick={handleSearch}>
         Search
