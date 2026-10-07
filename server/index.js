@@ -105,7 +105,7 @@ app.get("/api/orders", requireAuth, async (request, response) => {
 
 app.get("/api/health", (request, response) => response.json({ status: "ok" }));
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/gocart")
+mongoose.connect("mongodb+srv://sujalnaik_db_user:YdQAOxPs36POuQP4@cluster0.ercubks.mongodb.net/?appName=Cluster0")
   .then(() => app.listen(port, () => console.log(`GoCart API running on port ${port}`)))
   .catch((error) => {
     console.error("MongoDB connection failed:", error.message);
