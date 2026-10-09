@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      "/api": "https://gocart-q67n.onrender.com/",
+      "/api": "https://gocart-q67n.onrender.com",
     },
   },
 })
